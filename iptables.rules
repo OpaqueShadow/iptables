@@ -1,0 +1,37 @@
+*filter
+
+#Forward Policy
+:FORWARD DROP [0:0]
+
+#Input Policy
+:INPUT DROP [2:56]
+-A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+-A INPUT -i lo -j ACCEPT
+
+#Output Policy
+:OUTPUT DROP [1:200]
+-A OUTPUT -p icmp -j ACCEPT
+-A OUTPUT -p tcp -m tcp --dport 80 -j ACCEPT
+-A OUTPUT -p tcp -m tcp --dport 443 -j ACCEPT
+-A OUTPUT -p tcp -m tcp --dport 20 -j ACCEPT
+-A OUTPUT -p tcp -m tcp --dport 22 -j ACCEPT
+-A OUTPUT -p tcp -m tcp --dport 21 -j ACCEPT
+-A OUTPUT -p udp -m udp --dport 53 -j ACCEPT
+-A OUTPUT -p tcp -m tcp --dport 110 -j ACCEPT
+-A OUTPUT -p tcp -m tcp --dport 194 -j ACCEPT
+-A OUTPUT -p udp -m udp --dport 194 -j ACCEPT
+-A OUTPUT -p tcp -m tcp --dport 3389 -j ACCEPT
+-A OUTPUT -p tcp -m tcp --dport 23399 -j ACCEPT
+-A OUTPUT -p tcp -m tcp --dport 7070 -j ACCEPT
+-A OUTPUT -p tcp -m tcp --dport 9799 -j ACCEPT
+-A OUTPUT -p tcp -m tcp --dport 110 -j ACCEPT
+-A OUTPUT -p tcp -m tcp --dport 995 -j ACCEPT
+-A OUTPUT -p tcp -m tcp --dport 587 -j ACCEPT
+-A OUTPUT -p tcp -m tcp --dport 25 -j ACCEPT
+-A OUTPUT -p tcp -m tcp --dport 11371 -j ACCEPT
+-A OUTPUT -p tcp -m tcp --dport 623 -j ACCEPT
+-A OUTPUT -p tcp -m tcp --dport 4747 -j ACCEPT
+-A OUTPUT -p tcp -m tcp --dport 8080 -j ACCEPT
+-A OUTPUT -p tcp -m tcp --dport 9000 -j ACCEPT
+
+COMMIT
