@@ -11,6 +11,7 @@
 #Output Policy
 :OUTPUT DROP [1:200]
 -A OUTPUT -p icmp -j ACCEPT
+-A OUTPUT -o lo -j ACCEPT
 -A OUTPUT -p tcp -m tcp --dport 80 -j ACCEPT
 -A OUTPUT -p tcp -m tcp --dport 443 -j ACCEPT
 -A OUTPUT -p tcp -m tcp --dport 20 -j ACCEPT
@@ -33,5 +34,5 @@
 -A OUTPUT -p tcp -m tcp --dport 4747 -j ACCEPT
 -A OUTPUT -p tcp -m tcp --dport 8080 -j ACCEPT
 -A OUTPUT -p tcp -m tcp --dport 9000 -j ACCEPT
-
+-A OUTPUT -p tcp -m tcp --dport 993 -j ACCEPT
 COMMIT
